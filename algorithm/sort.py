@@ -26,19 +26,27 @@ def BubbleSort(sort_list=None):
 def QuickSort(sort_list=None, low=0, high=0):
     if low < high:
         temp = sort_list[low]
+        flag = False
         while low < high:
-            for k in range(high, low, -1):
+            k = high
+            while (k >= 0) and (k > low):
                 if sort_list[k] < temp:
                     sort_list[low] = sort_list[k]
-                    high = k - 1
-                    break
-            for i in range(low+1, high+1):
+                    high = k
+                k -= 1
+            i = low
+            while (i >= 0) and (i < high):
                 if sort_list[i] > temp:
-                    sort_list[high+1] = sort_list[i]
-                    low = i + 1
-                    break
-        sort_list[low-1] = temp
+                    sort_list[high] = sort_list[i]
+                    low = i
+                i += 1
+            low += 1
+            high -= 1
+        sort_list[low] = temp
         print sort_list
+        QuickSort(sort_list, low=0, high=low-1)
+        QuickSort(sort_list, low=low+1, high=len(sort_list))
+    # return sort_list
 
 
 if __name__ == '__main__':
