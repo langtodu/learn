@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+'''
+floyd利用动态规划的思想，从所有的点中，依次选择一个点作为中间点，不断更新其他点通过该点与另外的点连接距离最小的路径
+'''
+
 class Floyd(object):
     def __init__(self, graph=None):
         self.graph = graph
