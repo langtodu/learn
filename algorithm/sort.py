@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # 升序排列，直接插入排序，稳定算法，空间复杂度O(1)，时间复杂度O(n**2)
-def InsertSort(sort_list=None):
+def InsertSort(sort_list=[]):
     length = len(sort_list)
     for i in range(1,length):
         for k in range(i,0,-1):
@@ -11,7 +11,7 @@ def InsertSort(sort_list=None):
             else:
                 break
 # 升序排列，冒泡排序，稳定算法，空间复杂度O(1)，时间复杂度O(n**2)
-def BubbleSort(sort_list=None):
+def BubbleSort(sort_list=[]):
 
     length = len(sort_list)
     for i in range(1, length):
@@ -23,7 +23,7 @@ def BubbleSort(sort_list=None):
         if flag == False:
             break
 # 升序排列，快速排序，不稳定算法，平均空间复杂度O(logN)，最坏空间复杂度O(N)；平均时间复杂度O(NlogN)，最坏的时间复杂度O(N**2)
-def QuickSort(sort_list=None, low=0, high=0):
+def QuickSort(sort_list=[], low=0, high=0):
     if low < high:
         temp = sort_list[low]
         i, j = low, high
@@ -38,6 +38,16 @@ def QuickSort(sort_list=None, low=0, high=0):
         QuickSort(sort_list, low=low, high=i-1)
         QuickSort(sort_list, low=j+1, high=high)
     return sort_list
+# 升序排列，简单选择排序，不稳定算法，空间复杂度O(1)，时间复杂度O(n**2)
+def SelectSort(sort_list=[]):
+    for i in range(len(sort_list)-1):
+        min = i
+        for k in range(i+1, len(sort_list)):
+            if sort_list[k] < sort_list[min]:
+                min = k
+        if min != i:
+            sort_list[i], sort_list[min] = sort_list[min], sort_list[i]
+    return sort_list
 
 if __name__ == '__main__':
     ll = [9, 8, 7, 6, 1, 2, 3]
@@ -45,6 +55,6 @@ if __name__ == '__main__':
     print ll
     # BubbleSort(ll)
     # print ll
-    print QuickSort(ll, low=0, high=6)
-
+    # print QuickSort(ll, low=0, high=6)
+    print SelectSort(ll)
 
