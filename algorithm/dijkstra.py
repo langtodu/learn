@@ -54,3 +54,5 @@ if __name__ == "__main__":
     for i in range(len(graph_router)):
         print str(graph_router[i]) + "        " + str(graph_distance[i])
 
+
+
