@@ -24,29 +24,31 @@ def BubbleSort(sort_list=None):
             break
 # 升序排列，快速排序，不稳定算法，平均空间复杂度O(logN)，最坏空间复杂度O(N)；平均时间复杂度O(NlogN)，最坏的时间复杂度O(N**2)
 def QuickSort(sort_list=None, low=0, high=0):
+
     if low < high:
-        temp = sort_list[low]
-        while low < high:
-            for k in range(high, low, -1):
-                if sort_list[k] < temp:
-                    sort_list[low] = sort_list[k]
-                    high = k - 1
-                    break
-            for i in range(low+1, high+1):
-                if sort_list[i] > temp:
-                    sort_list[high+1] = sort_list[i]
-                    low = i + 1
-                    break
-        sort_list[low-1] = temp
+        i, j = low, high
+        flag = True
+        temp = sort_list[i]
+        while i < j:
+            while (i < j) and (sort_list[j] >= temp):
+                j = j - 1
+            sort_list[i] = sort_list[j]
+
+            while (i < j) and (sort_list[i] <= temp):
+                i = i + 1
+            sort_list[j] = sort_list[i]
+        sort_list[i] = temp
+        QuickSort(sort_list, low=low, high=i-1)
+        QuickSort(sort_list, low=j+1, high=high)
         print sort_list
 
 
 if __name__ == '__main__':
-    ll = [9, 8, 7, 6, 1, 2, 3]
+    ll = [9, 8, 7, 6, 1, 2, 3, 11, 10]
     # print InsertSort(sort_list=ll)
     print ll
     # BubbleSort(ll)
     # print ll
-    QuickSort(ll, low=0, high=6)
+    QuickSort(ll, low=0, high=8)
 
 
